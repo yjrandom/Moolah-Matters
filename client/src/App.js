@@ -8,6 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Navigation from "./components/lib/Navigation";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AppTitleBar from "./components/lib/AppTitleBar";
+import BottomNavigationBar from "./components/lib/BottomNavigationBar";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,7 +55,9 @@ function App() {
                             <Dashboard/>
                         </Route>
                     </Switch>
+
                 </main>
+                <BottomNavigationBar />
             </div>
         </BrowserRouter>
     );

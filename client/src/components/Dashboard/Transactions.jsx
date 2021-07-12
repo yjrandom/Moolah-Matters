@@ -6,6 +6,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import FoodImg from '../../assets/images/food.png'
+import TransportImg from '../../assets/images/bus.png'
 import {ListSubheader} from "@material-ui/core";
 
 // const useStyles = makeStyles((theme) => ({
@@ -36,16 +37,16 @@ export default function Transactions() {
         },
         {
             date: "Jan 12",
-            amount: 25,
-            category: "Food",
-            icon: FoodImg
+            amount: 12,
+            category: "Transport",
+            icon: TransportImg
         },
-        {
-            date: "Jan 12",
-            amount: 25,
-            category: "Food",
-            icon: FoodImg
-        }
+        // {
+        //     date: "Jan 12",
+        //     amount: 25,
+        //     category: "Food",
+        //     icon: FoodImg
+        // }
     ]
     let total = 0
     transactions.forEach(el => {

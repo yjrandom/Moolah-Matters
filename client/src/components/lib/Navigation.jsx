@@ -1,70 +1,114 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import {Home, BarChart, AccountBalanceWallet, Settings } from '@material-ui/icons'
+import {makeStyles, useTheme} from '@material-ui/core/styles';
+import {AccountBalanceWallet, BarChart, Home, Settings} from "@material-ui/icons";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
+    root: {
+        display: 'flex',
     },
+    drawer: {
+        [theme.breakpoints.up('md')]: {
+            width: drawerWidth,
+            flexShrink: 0,
+        },
+    },
+    // necessary for content to be below app bar
+    toolbar: theme.mixins.toolbar,
     drawerPaper: {
         width: drawerWidth,
     },
-    drawerContainer: {
-        overflow: 'auto',
-    }
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+    },
 }));
 
-export default function ClippedDrawer() {
+export default function Navigation(props) {
+    const {window} = props;
     const classes = useStyles();
+    const theme = useTheme();
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
+
+    const drawer = (
+        <div>
+            <div className={classes.toolbar}/>
+            <Divider/>
+            <List>
+                <ListItem button key='Dashboard'>
+                    <ListItemIcon>
+                        <Home/>
+                    </ListItemIcon>
+                    <ListItemText primary='Dashboard'/>
+                </ListItem>
+                <ListItem button key='Statistics'>
+                    <ListItemIcon>
+                        <BarChart/>
+                    </ListItemIcon>
+                    <ListItemText primary='Statistics'/>
+                </ListItem>
+                <ListItem button key='Accounts'>
+                    <ListItemIcon>
+                        <AccountBalanceWallet/>
+                    </ListItemIcon>
+                    <ListItemText primary='Accounts'/>
+                </ListItem>
+                <ListItem button key='Settings'>
+                    <ListItemIcon>
+                        <Settings/>
+                    </ListItemIcon>
+                    <ListItemText primary='Settings'/>
+                </ListItem>
+            </List>
+            <Divider/>
+        </div>
+    );
+
+    const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-            <Drawer
-                className={classes.drawer}
-                variant="permanent"
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <Toolbar/>
-                <div className={classes.drawerContainer}>
-                    <List>
-                        <ListItem button key='Dashboard'>
-                            <ListItemIcon>
-                                <Home/>
-                            </ListItemIcon>
-                            <ListItemText primary='Dashboard'/>
-                        </ListItem>
-                        <ListItem button key='Budget'>
-                            <ListItemIcon>
-                                <BarChart/>
-                            </ListItemIcon>
-                            <ListItemText primary='Budget'/>
-                        </ListItem>
-                        <ListItem button key='Accounts'>
-                            <ListItemIcon>
-                                <AccountBalanceWallet/>
-                            </ListItemIcon>
-                            <ListItemText primary='Accounts'/>
-                        </ListItem>
-                        <ListItem button key='Settings'>
-                            <ListItemIcon>
-                                <Settings/>
-                            </ListItemIcon>
-                            <ListItemText primary='Settings'/>
-                        </ListItem>
-                        <Divider />
-                    </List>
-                </div>
-            </Drawer>
+        <nav className={classes.drawer} aria-label="mailbox folders">
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            <Hidden mdUp implementation="css">
+                <Drawer
+                    container={container}
+                    variant="temporary"
+                    anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                    open={mobileOpen}
+                    onClose={handleDrawerToggle}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                    ModalProps={{
+                        keepMounted: true, // Better open performance on mobile.
+                    }}
+                >
+                    {drawer}
+                </Drawer>
+            </Hidden>
+            <Hidden smDown implementation="css">
+                <Drawer
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                    variant="permanent"
+                    open
+                >
+                    {drawer}
+                </Drawer>
+            </Hidden>
+        </nav>
     );
 }

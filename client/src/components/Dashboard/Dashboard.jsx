@@ -33,8 +33,8 @@ export default function Dashboard() {
                         ))}
                 </Grid>
 
-                <Grid item container xs={12} lg={6} spacing={5}>
-                    <Grid item xs={12} >
+                <Grid item container xs={12} lg={6}>
+                    <Grid item xs={12} style={{marginBottom:"5%"}}>
                         <Typography align='center' component='h3' variant='h3'>Budget</Typography>
                         <Budget/>
                     </Grid>
