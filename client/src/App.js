@@ -6,7 +6,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Navigation from "./components/lib/Navigation";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
 import AppTitleBar from "./components/lib/AppTitleBar";
 
 const useStyles = makeStyles((theme) => ({

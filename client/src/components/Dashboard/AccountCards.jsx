@@ -1,58 +1,61 @@
 import React from 'react';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import PigImg from '../../assets/images/piggy-bank.png'
 import IncomeImg from '../../assets/images/salary.png'
 import ExpensesImg from '../../assets/images/financial-profit.png'
 import {Grid} from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        backgroundColor: '#06D6A0',
-    },
-    mainAcc: {
-        display: 'flex',
-        backgroundColor: '#06D6A0',
-    },
-    income: {
-        display: 'flex',
-        backgroundColor: '#FFD166',
-    },
-    expenses: {
-        display: 'flex',
-        backgroundColor: '#F66D6D',
-    },
-    details: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    content: {
-        flex: '1 0 auto',
-        color: "white",
-    },
-    icon: {
-        width: '120px',
-        height: '120px',
-        margin: 'auto',
-        marginRight: '10%',
-    },
-    smallIcon: {
-        width: '50px',
-        height: '50px',
-        margin: 'auto',
-    }
-}));
 
-export default function AccountCards() {
+export default function AccountCards({account}) {
+    const useStyles = makeStyles(() => ({
+        root: {
+            display: 'flex',
+            backgroundColor: '#06D6A0',
+
+        },
+        mainAcc: {
+            display: 'flex',
+            backgroundColor: account.color,
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        },
+        income: {
+            display: 'flex',
+            backgroundColor: '#FFD166',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        },
+        expenses: {
+            display: 'flex',
+            backgroundColor: '#F66D6D',
+            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        },
+        details: {
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        content: {
+            flex: '1 0 auto',
+            color: "white",
+        },
+        icon: {
+            width: '120px',
+            height: '120px',
+            margin: 'auto',
+            marginRight: '10%',
+        },
+        smallIcon: {
+            width: '50px',
+            height: '50px',
+            margin: 'auto',
+        }
+    }));
     const classes = useStyles();
 
     return (
-        <div>
-            <Typography align="right" component="h6" variant="h6">Total</Typography>
+        <div style={{margin: "5% 0"}}>
+            <Typography align="right" component="h6" variant="h6">{account.name}</Typography>
             <Grid container classes={classes.root} spacing={2}>
                 <Grid item xs={12}>
                     <Card className={classes.mainAcc}>
@@ -68,8 +71,8 @@ export default function AccountCards() {
                         </div>
                         <CardMedia
                             className={classes.icon}
-                            image={PigImg}
-                            title="Piggy-Bank"
+                            image={account.icon}
+                            title={account.name}
                         />
                     </Card>
                 </Grid>
@@ -112,7 +115,6 @@ export default function AccountCards() {
                 </Card>
                 </Grid>
             </Grid>
-
         </div>
     );
 }
