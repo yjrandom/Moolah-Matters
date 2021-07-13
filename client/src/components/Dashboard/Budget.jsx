@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid} from "@material-ui/core";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "./BudgetBar";
 import PigImg from '../../assets/images/piggy-bank.png'
 import FoodImg from '../../assets/images/food.png'
 import TransportImg from '../../assets/images/bus.png'

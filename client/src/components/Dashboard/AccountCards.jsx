@@ -6,10 +6,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import IncomeImg from '../../assets/images/salary.png'
 import ExpensesImg from '../../assets/images/financial-profit.png'
-import {Grid} from "@material-ui/core";
+import {Grid, useMediaQuery, useTheme} from "@material-ui/core";
 
 
 export default function AccountCards({account}) {
+    const theme = useTheme()
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const useStyles = makeStyles(() => ({
         root: {
             display: 'flex',
@@ -40,15 +42,16 @@ export default function AccountCards({account}) {
             color: "white",
         },
         icon: {
-            width: '120px',
-            height: '120px',
+            maxHeight: '120px',
+            width: `${matches ? 'auto' : '70px'}`,
             margin: 'auto',
             marginRight: '10%',
         },
         smallIcon: {
-            width: '50px',
-            height: '50px',
+            maxWidth: '50px',
+            height: `${matches ? 'auto' : 0}`,
             margin: 'auto',
+            marginRight: '10%',
         }
     }));
     const classes = useStyles();
@@ -70,6 +73,7 @@ export default function AccountCards({account}) {
                             </CardContent>
                         </div>
                         <CardMedia
+                            component={"img"}
                             className={classes.icon}
                             image={account.icon}
                             title={account.name}
@@ -89,6 +93,7 @@ export default function AccountCards({account}) {
                         </CardContent>
                     </div>
                     <CardMedia
+                        component={"img"}
                         className={classes.smallIcon}
                         image={IncomeImg}
                         title="Income"
@@ -108,6 +113,7 @@ export default function AccountCards({account}) {
                         </CardContent>
                     </div>
                     <CardMedia
+                        component={"img"}
                         className={classes.smallIcon}
                         image={ExpensesImg}
                         title="Expenses"

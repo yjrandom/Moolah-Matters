@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Paper, Typography} from "@material-ui/core";
+import {Grid, Typography} from "@material-ui/core";
 import AccountCards from "./AccountCards";
 import Budget from "./Budget";
 import Transactions from "./Transactions";
@@ -7,8 +7,9 @@ import PigImg from '../../assets/images/piggy-bank.png'
 import BankImg from '../../assets/images/bank.png'
 
 export default function Dashboard() {
+
     // Mock Data
-    let accountNames = [
+    let accounts = [
         {
             name: "Total",
             color: '#06D6A0',
@@ -23,16 +24,13 @@ export default function Dashboard() {
     ]
 
     return (
-        <>
             <Grid container spacing={5}>
-
                 <Grid item xs={12} lg={6}>
                     <Typography align='center' component='h3' variant='h3'>Accounts</Typography>
-                    {accountNames.map(account => (
+                    {accounts.map(account => (
                             <AccountCards account={account}/>
                         ))}
                 </Grid>
-
                 <Grid item container xs={12} lg={6}>
                     <Grid item xs={12} style={{marginBottom:"5%"}}>
                         <Typography align='center' component='h3' variant='h3'>Budget</Typography>
@@ -43,8 +41,6 @@ export default function Dashboard() {
                         <Transactions/>
                     </Grid>
                 </Grid>
-
             </Grid>
-        </>
     )
 }

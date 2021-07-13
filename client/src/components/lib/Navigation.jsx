@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
@@ -47,24 +48,30 @@ export default function Navigation(props) {
             <div className={classes.toolbar}/>
             <Divider/>
             <List>
+                <NavLink exact to='/' style={{textDecoration: 'none', color:'black'}}>
                 <ListItem button key='Dashboard'>
-                    <ListItemIcon>
-                        <Home/>
-                    </ListItemIcon>
-                    <ListItemText primary='Dashboard'/>
+                        <ListItemIcon>
+                            <Home/>
+                        </ListItemIcon>
+                        <ListItemText primary='Dashboard'/>
                 </ListItem>
+                </NavLink>
                 <ListItem button key='Statistics'>
                     <ListItemIcon>
                         <BarChart/>
                     </ListItemIcon>
                     <ListItemText primary='Statistics'/>
                 </ListItem>
+                <NavLink exact to='/accounts' style={{textDecoration: 'none', color:'black'}}>
                 <ListItem button key='Accounts'>
-                    <ListItemIcon>
-                        <AccountBalanceWallet/>
-                    </ListItemIcon>
-                    <ListItemText primary='Accounts'/>
+
+                        <ListItemIcon>
+                            <AccountBalanceWallet/>
+                        </ListItemIcon>
+                        <ListItemText primary='Accounts'/>
+
                 </ListItem>
+                </NavLink>
                 <ListItem button key='Settings'>
                     <ListItemIcon>
                         <Settings/>

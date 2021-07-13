@@ -9,6 +9,8 @@ import Navigation from "./components/lib/Navigation";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AppTitleBar from "./components/lib/AppTitleBar";
 import BottomNavigationBar from "./components/lib/BottomNavigationBar";
+import {useMediaQuery, useTheme} from "@material-ui/core";
+import Accounts from "./components/Accounts/Accounts";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('md'));
     const classes = useStyles();
 
     // async function login(username, password){
@@ -46,16 +50,18 @@ function App() {
         <BrowserRouter>
             <div className={classes.root}>
                 <CssBaseline/>
-                <AppTitleBar/>
+                {matches && <AppTitleBar/>}
                 <Navigation/>
                 <main className={classes.content}>
-                    <Toolbar/>
+                    {matches && <Toolbar/>}
                     <Switch>
                         <Route exact path="/">
                             <Dashboard/>
                         </Route>
+                        <Route exact path="/accounts">
+                            <Accounts/>
+                        </Route>
                     </Switch>
-
                 </main>
                 <BottomNavigationBar />
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-export default function ProgressBar({category}) {
+export default function BudgetBar({category}) {
     const useStyles = makeStyles((theme) => ({
         root: {
             height: 30,
@@ -21,8 +21,8 @@ export default function ProgressBar({category}) {
     let progress = ((category.budgetSpent / category.budgetSet) * 100)
 
     return (
-    <LinearProgress classes={classes} variant="determinate" value={
-        progress > 100 ? 100 : progress
-    }/>
+        <LinearProgress classes={classes} variant="determinate" value={
+            progress > 100 ? 100 : progress
+        }/>
     );
 }
