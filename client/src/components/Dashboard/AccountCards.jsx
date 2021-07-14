@@ -6,22 +6,26 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import IncomeImg from '../../assets/images/salary.png'
 import ExpensesImg from '../../assets/images/financial-profit.png'
+import PigImg from '../../assets/images/piggy-bank.png'
+import BankImg from '../../assets/images/bank.png'
 import {Grid, useMediaQuery, useTheme} from "@material-ui/core";
 
 
 export default function AccountCards({account}) {
+    // const icon = require(`../../assets/images/${account.icon}.png`)
     const theme = useTheme()
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const useStyles = makeStyles(() => ({
         root: {
             display: 'flex',
-            backgroundColor: '#06D6A0',
-
+            backgroundColor: account.color,
+            borderRadius: '5px',
+            padding: '2%'
         },
         mainAcc: {
             display: 'flex',
             backgroundColor: account.color,
-            boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+            boxShadow: 'none',
         },
         income: {
             display: 'flex',
@@ -58,14 +62,14 @@ export default function AccountCards({account}) {
 
     return (
         <div style={{margin: "5% 0"}}>
-            <Typography align="right" component="h6" variant="h6">{account.name}</Typography>
-            <Grid container classes={classes.root} spacing={2}>
+            {/*<Typography align="right" component="h6" variant="h6">{account.name}</Typography>*/}
+            <Grid container className={classes.root} spacing={2}>
                 <Grid item xs={12}>
                     <Card className={classes.mainAcc}>
                         <div className={classes.details}>
                             <CardContent className={classes.content}>
                                 <Typography component="h3" variant="h3">
-                                    Balance
+                                    {account.name}
                                 </Typography>
                                 <Typography component="h2" variant="h2" style={{fontWeight: "bold"}}>
                                     $1234
@@ -73,9 +77,9 @@ export default function AccountCards({account}) {
                             </CardContent>
                         </div>
                         <CardMedia
-                            component={"img"}
+                            component={'img'}
                             className={classes.icon}
-                            image={account.icon}
+                            image={PigImg}
                             title={account.name}
                         />
                     </Card>

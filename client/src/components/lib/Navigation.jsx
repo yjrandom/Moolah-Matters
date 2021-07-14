@@ -48,7 +48,7 @@ export default function Navigation(props) {
             <div className={classes.toolbar}/>
             <Divider/>
             <List>
-                <NavLink exact to='/' style={{textDecoration: 'none', color:'black'}}>
+                <NavLink exact to='/dashboard' style={{textDecoration: 'none', color:'black'}}>
                 <ListItem button key='Dashboard'>
                         <ListItemIcon>
                             <Home/>
@@ -56,11 +56,11 @@ export default function Navigation(props) {
                         <ListItemText primary='Dashboard'/>
                 </ListItem>
                 </NavLink>
-                <ListItem button key='Statistics'>
+                <ListItem button key='Budget'>
                     <ListItemIcon>
                         <BarChart/>
                     </ListItemIcon>
-                    <ListItemText primary='Statistics'/>
+                    <ListItemText primary='Budget'/>
                 </ListItem>
                 <NavLink exact to='/accounts' style={{textDecoration: 'none', color:'black'}}>
                 <ListItem button key='Accounts'>

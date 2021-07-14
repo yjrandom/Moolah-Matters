@@ -2,17 +2,14 @@ import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import {useMediaQuery, useTheme} from "@material-ui/core";
+import {Hidden} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
 import {AccountBalanceWallet, BarChart, Home, Settings} from "@material-ui/icons";
 import AddTransaction from "./AddTransaction";
 
 export default function BottomNavigationBar() {
-    const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('md'));
     const useStyles = makeStyles((theme) => ({
         root: {
-            display: `${matches ? 'none': 'flex'}`,
             width: '100%',
             zIndex: theme.zIndex.drawer + 1,
             position: 'fixed',
@@ -30,41 +27,44 @@ export default function BottomNavigationBar() {
 
     return (
         <>
-            <AddTransaction />
-        <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-            <BottomNavigationAction
-                component={NavLink}
-                exact
-                to='/'
-                label="Dashboard"
-                value="dashboard"
-                icon={<Home/>}
-            />
-            <BottomNavigationAction
-                component={NavLink}
-                exact
-                to='/'
-                label="Budget"
-                value="budget"
-                icon={<BarChart/>}
-            />
-            <BottomNavigationAction
-                component={NavLink}
-                exact
-                to='/accounts'
-                label="Accounts"
-                value="accounts"
-                icon={<AccountBalanceWallet/>}
-            />
-            <BottomNavigationAction
-                component={NavLink}
-                exact
-                to='/'
-                label="Setting"
-                value="setting"
-                icon={<Settings/>}
-            />
-        </BottomNavigation>
+        <AddTransaction/>
+        <Hidden mdUp>
+
+            <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+                <BottomNavigationAction
+                    component={NavLink}
+                    exact
+                    to='/dashboard'
+                    label="Dashboard"
+                    value="dashboard"
+                    icon={<Home/>}
+                />
+                <BottomNavigationAction
+                    component={NavLink}
+                    exact
+                    to='/'
+                    label="Budget"
+                    value="budget"
+                    icon={<BarChart/>}
+                />
+                <BottomNavigationAction
+                    component={NavLink}
+                    exact
+                    to='/accounts'
+                    label="Accounts"
+                    value="accounts"
+                    icon={<AccountBalanceWallet/>}
+                />
+                <BottomNavigationAction
+                    component={NavLink}
+                    exact
+                    to='/'
+                    label="Setting"
+                    value="setting"
+                    icon={<Settings/>}
+                />
+            </BottomNavigation>
+        </Hidden>
         </>
     );
 }

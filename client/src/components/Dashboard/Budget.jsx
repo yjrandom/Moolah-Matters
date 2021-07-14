@@ -32,9 +32,9 @@ export default function Budget() {
     ]
 
     return (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} >
             {budgetList.map(category => (
-                <Grid item container xs={12} spacing={1}>
+                <Grid item container xs={12} spacing={1} key={category.name}>
                     <Grid item xs={6} style={{display: 'flex', alignItems: 'center'}} >
                         <img style={{height: '50px', width: '50px'}} src={category.icon} alt={category.name}/>
                         <h3 style={{paddingLeft:"5%"}}>{category.name}</h3>
