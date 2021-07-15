@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {NavLink} from "react-router-dom";
 import Axios from "../../util/Axios";
 import axios from 'axios';
+import {Login} from "../../util/Auth";
+import {useHistory} from "react-router-dom"
 
 // CSRF Tokens for forms
 axios.defaults.xsrfCookieName = 'csrftoken'
@@ -30,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RegisterPage({setAuth}) {
+    let history = useHistory()
     const classes = useStyles();
     const [formData, setFormData] = useState({
         "username": "",
@@ -47,6 +50,7 @@ export default function RegisterPage({setAuth}) {
         // console.log(formData)
         try {
             await Axios.post('/auth/register/', formData)
+            await Login(e, setAuth, formData.username, formData.password, history)
             setAuth(true)
         }
         catch (e) {
