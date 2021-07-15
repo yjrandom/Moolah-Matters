@@ -14,6 +14,7 @@ export default function Dashboard({accounts}) {
         name: 'Total',
         amount: 0,
         icon: PigImg,
+        color: '#06D6A0'
     }
 
     console.log(accounts)
