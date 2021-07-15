@@ -16,6 +16,7 @@ from datetime import timedelta
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware'
+      'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -88,14 +90,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'moolah_matters_development',
-        'USER': 'YONGJIAN',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'moolah_matters_development',
+        # 'USER': 'YONGJIAN',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432'
     }
 }
-
+DATABASES['default'] = dj_database_url.config(default='postgres://wraaoztzxtfbaa:b89f2589cd0145dfa025367178c1f38ac9723b62d23d27cc6d0be7a022d01885@ec2-3-226-134-153.compute-1.amazonaws.com:5432/d1h016qfs9mjqg')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -129,13 +131,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/var/www/static/',
@@ -192,6 +200,6 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 

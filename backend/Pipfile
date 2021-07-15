@@ -12,6 +12,9 @@ djangorestframework = "*"
 django-cors-headers = "*"
 pillow = "*"
 cloudinary = "*"
+gunicorn = "*"
+whitenoise = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
