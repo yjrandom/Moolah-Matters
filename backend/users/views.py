@@ -31,7 +31,7 @@ def sign_up(request):
         except IntegrityError:
             return Response({"message" : "Username already exist"},
                 status=status.HTTP_406_NOT_ACCEPTABLE)
-        login(request, user)
+        # login(request, user)
         return Response({"message" : "User created"},
                 status=status.HTTP_201_CREATED)
     else:
