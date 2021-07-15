@@ -145,8 +145,8 @@ MEDIA_URL = '/media/'
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    '/var/www/static/',
+    # BASE_DIR / "static",
+    # '/var/www/static/',
     BASE_DIR / 'build/static',
 ]
 # Default primary key field type
