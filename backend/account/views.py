@@ -57,6 +57,6 @@ def create_transactions(request):
     except:
         return Response({"message" : "Wrong"},
             status=status.HTTP_406_NOT_ACCEPTABLE)
-    new_transaction = Transaction.objects.latest('id')
+    new_transaction = Transaction.objects.latest('date')
     return Response({'message': 'Transaction created.', 'new_transaction': new_transaction.serialize()}, 
     status=status.HTTP_201_CREATED)

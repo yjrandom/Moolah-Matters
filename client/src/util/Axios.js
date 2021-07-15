@@ -1,7 +1,5 @@
 import Axios from 'axios'
 
-let baseUrl = 'http://localhost:8000'
-
 Axios.interceptors.request.use(
     config => {
         if(localStorage.access){
@@ -29,7 +27,7 @@ Axios.interceptors.response.use(
             !originalRequest._retry
         ){
             originalRequest._retry = true
-            return Axios.post(`${baseUrl}/api/token/refresh/`, { refresh : refreshToken})
+            return Axios.post(`/api/token/refresh/`, { refresh : refreshToken})
                 .then(res => {
                     if( res.status === 200){
                         console.log(res.data)
