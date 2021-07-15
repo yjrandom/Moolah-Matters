@@ -6,8 +6,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import IncomeImg from '../../assets/images/salary.png'
 import ExpensesImg from '../../assets/images/financial-profit.png'
-import PigImg from '../../assets/images/piggy-bank.png'
-import BankImg from '../../assets/images/bank.png'
 import {Grid, useMediaQuery, useTheme} from "@material-ui/core";
 
 
@@ -61,7 +59,6 @@ export default function AccountCards({account}) {
 
     return (
         <div style={{margin: "5% 0"}}>
-            {/*<Typography align="right" component="h6" variant="h6">{account.name}</Typography>*/}
             <Grid container className={classes.root} spacing={2}>
                 <Grid item xs={12}>
                     <Card className={classes.mainAcc}>
@@ -71,7 +68,7 @@ export default function AccountCards({account}) {
                                     {account.name}
                                 </Typography>
                                 <Typography component="h2" variant="h2" style={{fontWeight: "bold"}}>
-                                    $1234
+                                    ${account.amount}
                                 </Typography>
                             </CardContent>
                         </div>
@@ -91,7 +88,7 @@ export default function AccountCards({account}) {
                                 Income
                             </Typography>
                             <Typography component="h4" variant="h4" style={{fontWeight: "bold"}}>
-                                $5000
+                                {account.amount * 0.5}
                             </Typography>
                         </CardContent>
                     </div>
@@ -111,7 +108,7 @@ export default function AccountCards({account}) {
                                 Expenses
                             </Typography>
                             <Typography component="h4" variant="h4" style={{fontWeight: "bold"}}>
-                                -$2855
+                                -${account.amount * 0.5}
                             </Typography>
                         </CardContent>
                     </div>

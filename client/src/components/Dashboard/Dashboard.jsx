@@ -3,23 +3,18 @@ import {Container, Grid, Typography, useMediaQuery, useTheme} from "@material-ui
 import AccountCards from "./AccountCards";
 import Budget from "./Budget";
 import Transactions from "./Transactions";
-
-import Axios from "../../util/Axios";
+import PigImg from '../../assets/images/piggy-bank.png'
 
 export default function Dashboard({accounts}) {
     const [user, setUser] = useState({})
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('lg'));
 
-    //
-    // async function getAccounts(){
-    //     try{
-    //         let {data} = await Axios.post(`/api/accounts/`, {user})
-    //         console.log(data)
-    //     }catch (e) {
-    //         console.log(e.response)
-    //     }
-    // }
+    const mockData = {
+        name: 'Total',
+        amount: 0,
+        icon: PigImg,
+    }
 
     console.log(accounts)
     return (
@@ -29,9 +24,11 @@ export default function Dashboard({accounts}) {
             >
                 <Grid item xs={12} lg={6}>
                     <Typography align='center' component='h3' variant='h3'>Accounts</Typography>
-                    {accounts && accounts.map(account => (
+                    {(accounts && accounts.length < 1) ? accounts.map(account => (
                             <AccountCards account={account} key={account.name}/>
-                        ))}
+                        )):
+                        <AccountCards account={mockData} key={mockData.name}/>
+                    }
                 </Grid>
                 <Grid item container xs={12} lg={6}>
                     <Grid item xs={12} style={{marginBottom:"5%"}}>
