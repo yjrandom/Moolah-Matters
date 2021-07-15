@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function RegisterPage() {
+export default function RegisterPage({setAuth}) {
     const classes = useStyles();
     const [formData, setFormData] = useState({
         "username": "",
@@ -46,8 +46,8 @@ export default function RegisterPage() {
         e.preventDefault()
         // console.log(formData)
         try {
-            let data = await Axios.post('/auth/register/', formData)
-            console.log(data)
+            await Axios.post('/auth/register/', formData)
+            setAuth(true)
         }
         catch (e) {
             console.log(e.response.data.message)

@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {Button} from "@material-ui/core";
-import {Login} from "../../util/Auth";
 import {NavLink, useHistory} from "react-router-dom"
 
 export default function AppTitleBar({auth, setAuth}) {
@@ -18,19 +17,36 @@ export default function AppTitleBar({auth, setAuth}) {
             flexGrow: 1
         }
     }));
-
     const classes = useStyles();
 
-  return (
+    async function logout() {
+        try {
+            localStorage.removeItem("access")
+            localStorage.removeItem("refresh")
+            setAuth(false)
+            history.push('/')
+        } catch (e) {
+            setAuth(false)
+            console.log(e)
+        }
+    }
+
+
+    return (
         <AppBar position="fixed" className={classes.root} color="inherit">
-          <Toolbar>
-            <Typography variant="h6" noWrap className={classes.title}>
-                <NavLink to='/' style={{textDecoration: 'none', color: 'black'}} onClick={() => setAuth(false)}>
-              MOOLAH MATTERS
-                </NavLink>
-            </Typography>
-              {!auth && <Button type='submit' color="inherit" onClick={(e) => Login(e, setAuth, 'admin', 'admin', history)}>Login</Button>}
-          </Toolbar>
+            <Toolbar>
+                <Typography variant="h6" noWrap className={classes.title}>
+                    <NavLink to={auth ? '/dashboard' : '/'} style={{textDecoration: 'none', color: 'black'}}>
+                        MOOLAH MATTERS
+                    </NavLink>
+                </Typography>
+                {!auth ?
+                    <NavLink to='/login' style={{textDecoration: 'none', color: "black"}}>
+                        <Button type='submit' color="inherit">Login</Button>
+                    </NavLink> :
+                    <Button type='submit' color="inherit" onClick={logout}>Logout</Button>
+                }
+            </Toolbar>
         </AppBar>
-  );
+    );
 }

@@ -4,7 +4,7 @@ import uuid
 from django.db.models.deletion import DO_NOTHING
 from django.db.models.fields import DateTimeField, DecimalField
 from users.models import User
-
+from cloudinary.models import CloudinaryField
 # Create your models here.
 class Account_type(models.Model):
     id = models.UUIDField(
@@ -24,7 +24,7 @@ class Icon(models.Model):
         default=uuid.uuid4
     )
     name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='uploads/%Y/%m/%d')
+    image = CloudinaryField('iamge')
 
     def __str__(self):
         return self.name
@@ -63,7 +63,7 @@ class Account(models.Model):
                 "name" : self.account_type.name
             },
             "color": self.color,
-            "icon": self.icon.name
+            "icon": str(self.icon.image.url)
         }
 
     def __str__(self):
@@ -87,6 +87,7 @@ class Transaction(models.Model):
         editable=False,
         default=uuid.uuid4
     )
+    name = models.CharField(max_length=200)
     account = models.ForeignKey(
         Account,
         on_delete=DO_NOTHING,
@@ -103,6 +104,7 @@ class Transaction(models.Model):
     def serialize(self):
         return {
             "id" : self.id,
+            "name": self.name,
             "amount" : self.amount,
             "transaction_type" : {
                 "name" : self.transaction_type.name

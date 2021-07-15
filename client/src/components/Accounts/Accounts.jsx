@@ -51,7 +51,6 @@ function Accounts({accounts}) {
 
     return (
         <Container style={{paddingTop: "2%"}}>
-            <Container>Hi</Container>
             <Grid container spacing={3}>
                 {accounts && accounts.map(account => (
                     <Grid item xs={12} md={6} key={account.name}>

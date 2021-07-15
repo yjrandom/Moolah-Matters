@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SignInSide() {
+export default function SignInSide({setAuth}) {
     const classes = useStyles();
 
     return (
@@ -35,7 +35,7 @@ export default function SignInSide() {
                 <h1 className={classes.titleText}>Don't spend money you haven't earn.</h1>
                 <img className={classes.image} src={WalletImg} alt="Logo"/>
             </Grid>
-            <RegisterPage/>
+            <RegisterPage setAuth={setAuth}/>
         </Grid>
     );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {NavLink} from "react-router-dom";
-import Axios from "../../util/Axios";
 import {useHistory} from "react-router-dom"
 import {Login} from '../../util/Auth'
 
@@ -53,19 +52,13 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginPage({setAuth}) {
     const classes = useStyles();
     let history = useHistory()
+    const [formData, setFormData] = useState({})
 
-    // async function login(e, username, password){
-    //     e.preventDefault()
-    //     try{
-    //         let {data} = await Axios.post(`/api/token/`, {username, password})
-    //         localStorage.setItem("access", data.access)
-    //         localStorage.setItem("refresh", data.refresh)
-    //         setAuth(true)
-    //         history.push("/dashboard")
-    //     }catch (e) {
-    //         console.log(e.response)
-    //     }
-    // }
+    function handleChange(e){
+        setFormData(prevState => ({...prevState, [e.target.name]: e.target.value}))
+    }
+
+    console.log(formData)
 
     return (
         <Container component="main" maxWidth="xs">
@@ -83,11 +76,12 @@ export default function LoginPage({setAuth}) {
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
+                        id="username"
+                        label="Username"
+                        name="username"
+                        autoComplete="username"
                         autoFocus
+                        onChange={handleChange}
                     />
                     <TextField
                         variant="outlined"
@@ -99,6 +93,7 @@ export default function LoginPage({setAuth}) {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handleChange}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -110,7 +105,7 @@ export default function LoginPage({setAuth}) {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={(e) => Login(e, setAuth, 'admin', 'admin', history)}
+                        onClick={(e) => Login(e, setAuth, formData.username, formData.password, history)}
                     >
                         Sign In
                     </Button>

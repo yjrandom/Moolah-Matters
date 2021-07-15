@@ -29,44 +29,23 @@ function App() {
     // Auth
     const [auth, setAuth] = useState(false)
     const [accounts, setAccounts] = useState([])
+    const [transactions, setTransactions] = useState([])
 
     useEffect(() => {
-        async function getAccounts(){
-            try{
-                let {data} = await Axios.get(`/api/accounts`)
-                // console.log(data)
-                setAccounts(data)
-            }catch (e) {
-                console.log(e.response)
-            }
-        }
         getAccounts()
-    },[])
+    },[auth])
 
 
-
-    // useEffect(() => {
-    //     async function setUserStats() {
-    //         try {
-    //             let {data} = await Axios.get("/api/auth/user", {
-    //                 headers: {
-    //                     authorization: `Bearer ${localStorage.token}`
-    //                 }
-    //             })
-    //             setAuth(true)
-    //             setUser(data.user)
-    //
-    //         } catch (e) {
-    //             console.log(e.response)
-    //             setAuth(false)
-    //             setUser(null)
-    //             localStorage.removeItem("token")
-    //         }
-    //     }
-    //
-    //     setUserStats()
-    // }, [auth])
-
+    async function getAccounts(){
+        try{
+            let {data} = await Axios.get(`/api/accounts`)
+            setAuth(true)
+            setAccounts(data)
+        }catch (e) {
+            setAuth(false)
+            console.log(e)
+        }
+    }
 
     return (
         <BrowserRouter>
@@ -78,18 +57,18 @@ function App() {
                 <Toolbar />
                     <Switch>
                         <Route exact path="/">
-                            <LandingPage/>
+                            {!auth ? <LandingPage setAuth={setAuth}/> : <Dashboard accounts={accounts}/>}
                         </Route>
                         <Route exact path="/login">
                             <LoginPage setAuth={setAuth}/>
                         </Route>
                         <PrivateRouter auth={auth} Component={Dashboard} path='/dashboard' accounts={accounts} exact/>
                         <PrivateRouter auth={auth} Component={Accounts} path='/accounts' accounts={accounts} exact/>
-                        <PrivateRouter auth={auth} Component={SingleAccountPage} path='/accounts/:id' accounts={accounts} exact/>
+                        <PrivateRouter auth={auth} Component={SingleAccountPage} path='/accounts/:id' accounts={accounts} transactions={transactions} setTransactions={setTransactions} exact/>
                     </Switch>
                     {auth && <Toolbar/>}
                 </main>
-                {auth && <BottomNavigationBar />}
+                {auth && <BottomNavigationBar accounts={accounts} setTransactions={setTransactions}/>}
             </div>
         </BrowserRouter>
     );
@@ -107,5 +86,6 @@ function PrivateRouter({auth, Component, path, location, ...rest}) {
         </>
     )
 }
+
 
 export default App;

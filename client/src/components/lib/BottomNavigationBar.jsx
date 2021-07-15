@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom";
 import {AccountBalanceWallet, BarChart, Home, Settings} from "@material-ui/icons";
 import AddTransaction from "./AddTransaction";
 
-export default function BottomNavigationBar() {
+export default function BottomNavigationBar({accounts, setTransactions}) {
     const useStyles = makeStyles((theme) => ({
         root: {
             width: '100%',
@@ -27,7 +27,7 @@ export default function BottomNavigationBar() {
 
     return (
         <>
-        <AddTransaction/>
+        <AddTransaction accounts={accounts} setTransactions={setTransactions}/>
         <Hidden mdUp>
 
             <BottomNavigation value={value} onChange={handleChange} className={classes.root}>

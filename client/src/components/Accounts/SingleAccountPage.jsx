@@ -12,7 +12,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-function SingleAccountPage(props) {
+function SingleAccountPage({transactions, setTransactions}) {
     // Table Styles
     const useStyles = makeStyles({
         table: {
@@ -20,14 +20,13 @@ function SingleAccountPage(props) {
         },
     });
     const classes = useStyles();
-
-    const [transactions, setTransactions] = useState()
     const {id} = useParams()
 
     useEffect(() => {
         async function getTransactions() {
             try {
                 let {data} = await Axios.post('/api/transactions/', {id})
+                console.log(data)
                 setTransactions(data)
             } catch (e) {
                 console.log(e)
@@ -36,6 +35,7 @@ function SingleAccountPage(props) {
         getTransactions()
     },[])
 
+    // console.log(transactions)
     return (
         <div>
                 <TableContainer component={Paper}>
@@ -43,6 +43,7 @@ function SingleAccountPage(props) {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Date</TableCell>
+                                <TableCell align="left">Name</TableCell>
                                 <TableCell align="right">Type</TableCell>
                                 <TableCell align="right">Amount</TableCell>
                             </TableRow>
@@ -50,9 +51,10 @@ function SingleAccountPage(props) {
                         <TableBody>
                             {transactions && transactions.map(transaction => (
                                 <TableRow key={transaction.id}>
-                                    <TableCell component="th" scope="row">
-                                        {transaction['date_time']}
+                                    <TableCell component="th" scope="row" sortDirection='desc'>
+                                        {new Date(transaction['date_time']).toLocaleDateString()}
                                     </TableCell>
+                                    <TableCell align="left">{transaction.name}</TableCell>
                                     <TableCell align="right">{transaction.transaction_type.name}</TableCell>
                                     <TableCell align="right">${transaction.amount}</TableCell>
                                 </TableRow>

@@ -12,7 +12,6 @@ import {Grid, useMediaQuery, useTheme} from "@material-ui/core";
 
 
 export default function AccountCards({account}) {
-    // const icon = require(`../../assets/images/${account.icon}.png`)
     const theme = useTheme()
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const useStyles = makeStyles(() => ({
@@ -79,7 +78,7 @@ export default function AccountCards({account}) {
                         <CardMedia
                             component={'img'}
                             className={classes.icon}
-                            image={PigImg}
+                            image={account.icon}
                             title={account.name}
                         />
                     </Card>

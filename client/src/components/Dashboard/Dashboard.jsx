@@ -21,6 +21,7 @@ export default function Dashboard({accounts}) {
     //     }
     // }
 
+    console.log(accounts)
     return (
         <Container style={{paddingTop: "2%"}}>
             <Grid container

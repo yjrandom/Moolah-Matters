@@ -13,4 +13,3 @@ export async function Login(e, setAuth, username, password, history){
         console.log(e.response)
     }
 }
-
