@@ -69,7 +69,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../client/build')],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -97,7 +97,7 @@ DATABASES = {
         # 'PORT': '5432'
     }
 }
-DATABASES['default'] = dj_database_url.config(default='postgres://wraaoztzxtfbaa:b89f2589cd0145dfa025367178c1f38ac9723b62d23d27cc6d0be7a022d01885@ec2-3-226-134-153.compute-1.amazonaws.com:5432/d1h016qfs9mjqg')
+DATABASES['default'] = dj_database_url.config(default='postgres://cvyvawhgqjzidw:a24bebc68ca77e8007637cb8aa36c6afb6e286495c06c81d97e204ecec810faf@ec2-52-0-67-144.compute-1.amazonaws.com:5432/d8vrfce9qmcshr')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -147,7 +147,7 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/var/www/static/',
-    BASE_DIR / '../client/build/static',
+    BASE_DIR / 'build/static',
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
