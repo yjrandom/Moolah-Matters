@@ -57,6 +57,9 @@ export default function AccountCards({account}) {
     }));
     const classes = useStyles();
 
+    let income = account.amount
+    let expenses = account.amount
+
     return (
         <div style={{margin: "5% 0"}}>
             <Grid container className={classes.root} spacing={2}>
@@ -80,7 +83,7 @@ export default function AccountCards({account}) {
                         />
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6}>
                 <Card className={classes.income}>
                     <div className={classes.details}>
                         <CardContent className={classes.content}>
@@ -88,7 +91,7 @@ export default function AccountCards({account}) {
                                 Income
                             </Typography>
                             <Typography component="h4" variant="h4" style={{fontWeight: "bold"}}>
-                                {account.amount * 0.5}
+                                ${income}
                             </Typography>
                         </CardContent>
                     </div>
@@ -100,7 +103,7 @@ export default function AccountCards({account}) {
                     />
                 </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6}>
                 <Card className={classes.expenses}>
                     <div className={classes.details}>
                         <CardContent className={classes.content}>
@@ -108,7 +111,7 @@ export default function AccountCards({account}) {
                                 Expenses
                             </Typography>
                             <Typography component="h4" variant="h4" style={{fontWeight: "bold"}}>
-                                -${account.amount * 0.5}
+                                -${expenses}
                             </Typography>
                         </CardContent>
                     </div>
