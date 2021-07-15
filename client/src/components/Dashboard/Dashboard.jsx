@@ -25,7 +25,7 @@ export default function Dashboard({accounts}) {
             >
                 <Grid item xs={12} lg={6}>
                     <Typography align='center' component='h3' variant='h3'>Accounts</Typography>
-                    {(accounts && accounts.length < 1) ? accounts.map(account => (
+                    {(accounts && accounts.length > 0) ? accounts.map(account => (
                             <AccountCards account={account} key={account.name}/>
                         )):
                         <AccountCards account={mockData} key={mockData.name}/>
