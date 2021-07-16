@@ -31,7 +31,6 @@ export default function AppTitleBar({auth, setAuth}) {
         }
     }
 
-
     return (
         <AppBar position="fixed" className={classes.root} color="inherit">
             <Toolbar>

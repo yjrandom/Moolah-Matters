@@ -58,8 +58,6 @@ export default function LoginPage({setAuth}) {
         setFormData(prevState => ({...prevState, [e.target.name]: e.target.value}))
     }
 
-    console.log(formData)
-
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />

@@ -50,7 +50,6 @@ export default function AddTransaction({accounts, setTransactions}) {
 
     async function submit(e) {
         e.preventDefault()
-        console.log(formData)
         try{
             let {data} = await Axios.post('/api/transaction/create', formData)
             console.log(data.message)
@@ -115,7 +114,6 @@ export default function AddTransaction({accounts, setTransactions}) {
         },
     }));
     const classes = useStyles();
-
 
     return (
         <>

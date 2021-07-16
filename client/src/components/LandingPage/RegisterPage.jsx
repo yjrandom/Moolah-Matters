@@ -47,14 +47,13 @@ export default function RegisterPage({setAuth}) {
 
     async function register(e){
         e.preventDefault()
-        // console.log(formData)
         try {
             await Axios.post('/auth/register/', formData)
             await Login(e, setAuth, formData.username, formData.password, history)
             setAuth(true)
         }
         catch (e) {
-            console.log(e.response.data.message)
+            console.log(e)
         }
     }
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Container, Grid, Typography, useMediaQuery, useTheme} from "@material-ui/core";
 import AccountCards from "./AccountCards";
 import Budget from "./Budget";
@@ -6,7 +6,6 @@ import Transactions from "./Transactions";
 import PigImg from '../../assets/images/piggy-bank.png'
 
 export default function Dashboard({accounts}) {
-    const [user, setUser] = useState({})
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('lg'));
 

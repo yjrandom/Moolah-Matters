@@ -50,15 +50,15 @@ export default function AccountCards({account}) {
         },
         smallIcon: {
             maxWidth: '50px',
-            height: `${matches ? 'auto' : 0}`,
+            height: `auto`,
             margin: 'auto',
             marginRight: '10%',
         }
     }));
     const classes = useStyles();
 
-    let income = account.amount
-    let expenses = account.amount
+    let income = 500
+    let expenses = 500
 
     return (
         <div style={{margin: "5% 0"}}>

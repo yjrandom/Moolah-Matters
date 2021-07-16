@@ -35,7 +35,6 @@ function App() {
         getAccounts()
     },[auth])
 
-
     async function getAccounts(){
         try{
             let {data} = await Axios.get(`/api/accounts`)
@@ -86,6 +85,5 @@ function PrivateRouter({auth, Component, path, location, ...rest}) {
         </>
     )
 }
-
 
 export default App;
