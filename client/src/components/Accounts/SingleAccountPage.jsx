@@ -26,7 +26,6 @@ function SingleAccountPage({transactions, setTransactions}) {
         async function getTransactions() {
             try {
                 let {data} = await Axios.post('/api/transactions/', {id})
-                console.log(data)
                 setTransactions(data)
             } catch (e) {
                 console.log(e)
@@ -35,7 +34,6 @@ function SingleAccountPage({transactions, setTransactions}) {
         getTransactions()
     },[])
 
-    // console.log(transactions)
     return (
         <div>
                 <TableContainer component={Paper}>

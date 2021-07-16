@@ -16,7 +16,6 @@ export default function Dashboard({accounts}) {
         color: '#06D6A0'
     }
 
-    console.log(accounts)
     return (
         <Container style={{paddingTop: "2%"}}>
             <Grid container

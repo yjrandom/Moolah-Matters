@@ -30,7 +30,7 @@ Axios.interceptors.response.use(
             return Axios.post(`/api/token/refresh/`, { refresh : refreshToken})
                 .then(res => {
                     if( res.status === 200){
-                        console.log(res.data)
+                        // console.log(res.data)
                         localStorage.setItem("access", res.data.access)
 
                         return Axios(originalRequest);
